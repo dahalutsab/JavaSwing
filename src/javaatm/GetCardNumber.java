@@ -5,9 +5,8 @@
 package javaatm;
 
 import java.awt.CardLayout;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
-
 /**
  *
  * @author LEGION
@@ -24,6 +23,7 @@ public class GetCardNumber extends javax.swing.JFrame {
      */
     public GetCardNumber() {
         initComponents();
+        setIconImage();
     }
 
     private void switchToPanel(String panelName) {
@@ -55,6 +55,7 @@ public class GetCardNumber extends javax.swing.JFrame {
         pinSubmit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImages(null);
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/atm/logo/rastriyaBanijyaBank.png"))); // NOI18N
@@ -142,6 +143,7 @@ public class GetCardNumber extends javax.swing.JFrame {
         );
 
         MainPanel.add(CardPanel, "cardPanelCode");
+        getRootPane().setDefaultButton(cardSubmit);
 
         pinPasswordField.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         pinPasswordField.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -201,7 +203,7 @@ public class GetCardNumber extends javax.swing.JFrame {
         );
 
         MainPanel.add(PINPanel, "PINPanelCode");
-        //getRootPane().setDefaultButton(pinSubmit);
+        getRootPane().setDefaultButton(pinSubmit);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -318,4 +320,8 @@ public class GetCardNumber extends javax.swing.JFrame {
     private javax.swing.JButton pinSubmit;
     private javax.swing.JLabel wrongCardLabel;
     // End of variables declaration//GEN-END:variables
+
+    private void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("appIcon.png")));
+    }
 }

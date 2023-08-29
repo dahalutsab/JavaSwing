@@ -5,6 +5,7 @@
 package javaatm;
 
 import java.awt.CardLayout;
+import java.awt.Toolkit;
 import javax.swing.ButtonModel;
 import javax.swing.JOptionPane;
 
@@ -15,24 +16,17 @@ import javax.swing.JOptionPane;
 public class UserInterface extends javax.swing.JFrame {
 
     dbInfoLoader dbLoad;
-//    String username;
-//    double balance;
+
     /**
      * Creates new form getCardNumber
      */
     public UserInterface() {
         
-        
-        //long cardNumber = GetCardNumber.cardNumber;
         long cardNumber = GetCardNumber.getCardNum();
         dbLoad = new dbInfoLoader(cardNumber);
         
-        //System.out.println(dbLoad.getUsrBalance());
-//        username = dbLoad.getDbCardHolderName();
-//        balance = dbLoad.getUsrBalance();
-        //balance = dbLoad.usrBalance;
         initComponents();
-        //dbInfoLoader dbinfoloader = new dbInfoLoader();
+        setIconImage();
     }
     
     private void switchToPanel(String panelName) {
@@ -877,17 +871,17 @@ public class UserInterface extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "S.N", "Transaction", "Date"
+                "S.N", "Transaction", "Date", "", "Title 5"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1386,4 +1380,8 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JLabel wrongDepositChoice;
     private javax.swing.JLabel wrongWithDrawChoice;
     // End of variables declaration//GEN-END:variables
+
+    private void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("appIcon.png")));
+    }
 }

@@ -182,16 +182,5 @@ public class dbInfoLoader {
     public void setDbFlag(int dbFlag) {
         this.dbFlag = dbFlag;
     }
-    
-    public void transferAmountMethod(String receiverAccountNumberString, String amountString, String PINString) {
-        long receiverAccountNumber = Long.parseLong(receiverAccountNumberString);
-        double amount = Double.parseDouble(amountString);
-        int PIN = Integer.parseInt(PINString);
-        
-        if(PIN == getDbPIN()) {
-            
-            
-            System.out.println("Success");
-        }
-    }
+ 
 }
