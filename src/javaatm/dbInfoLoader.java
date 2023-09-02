@@ -1,8 +1,10 @@
 
 package javaatm;
 import java.sql.*;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class dbInfoLoader {
@@ -14,6 +16,7 @@ public class dbInfoLoader {
     private boolean dbStatus;
     private double usrBalance;
     private int dbFlag;
+    ResultSet rs;
 
     public dbInfoLoader(long cardNumber) {
         fetchDataFromDatabase(cardNumber);
@@ -26,7 +29,7 @@ public class dbInfoLoader {
         try {
             stat = cn.createStatement();
             String sql = "SELECT * FROM user_accounts WHERE card_number = " + cardNumber;
-            ResultSet rs = stat.executeQuery(sql);
+            rs = stat.executeQuery(sql);
 
             if (rs.next()) {
                 dbCardNumber = rs.getLong("card_number");
@@ -175,6 +178,27 @@ public class dbInfoLoader {
     }
      
      
+     
+    public boolean insertTransactionHistory(String transactionType, double amount, long fromAccountID, long toAccountID, String byAccountName) {
+        String insertQuery = "INSERT INTO TransactionHistory (TransactionType, Amount, FromAccountID, ToAccountID, ByAccountName) VALUES (?, ?, ?, ?, ?)";
+        
+        try (
+             PreparedStatement preparedStatement = cn.prepareStatement(insertQuery)) {
+
+            preparedStatement.setString(1, transactionType);
+            preparedStatement.setDouble(2, amount);
+            preparedStatement.setLong(3, fromAccountID);
+            preparedStatement.setLong(4, toAccountID);
+            preparedStatement.setString(5, byAccountName);
+
+            preparedStatement.executeUpdate();
+            System.out.println("Transaction inserted successfully.");
+            return true;
+        } catch (SQLException e) {
+        }
+        return false;
+    }
+     
     public int getDbFlag() {
         return dbFlag;
     }
@@ -182,5 +206,34 @@ public class dbInfoLoader {
     public void setDbFlag(int dbFlag) {
         this.dbFlag = dbFlag;
     }
- 
+    
+    
+    public List<Object[]> getTransactionHistory() {
+        List<Object[]> transactionList = new ArrayList<>();
+
+        try {
+            stat = cn.createStatement();
+            String sql = "SELECT * FROM transactionhistory WHERE FromAccountID = " + dbCardNumber + " ORDER BY Timestamp DESC LIMIT 5";
+            rs = stat.executeQuery(sql);
+
+            while (rs.next()) {
+                Object[] transaction = new Object[6];
+                transaction[0] = rs.getString("TransactionType");
+                transaction[1] = rs.getDouble("Amount");
+                transaction[2] = rs.getLong("FromAccountID");
+                transaction[3] = rs.getLong("ToAccountID");
+                transaction[4] = rs.getString("ByAccountName");
+                transaction[5] = rs.getTimestamp("Timestamp");
+
+                transactionList.add(transaction);
+            }
+            rs.close();
+            stat.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return transactionList;
+    }
+
 }

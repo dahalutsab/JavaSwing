@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 30, 2023 at 04:27 AM
+-- Generation Time: Sep 02, 2023 at 06:04 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -24,6 +24,33 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `transactionhistory`
+--
+
+CREATE TABLE `transactionhistory` (
+  `TransactionID` int(11) NOT NULL,
+  `TransactionType` enum('Deposit','Withdrawal','Transfer') NOT NULL,
+  `Amount` double NOT NULL,
+  `FromAccountID` bigint(20) DEFAULT NULL,
+  `ToAccountID` bigint(20) DEFAULT NULL,
+  `ByAccountName` varchar(50) NOT NULL,
+  `Timestamp` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `transactionhistory`
+--
+
+INSERT INTO `transactionhistory` (`TransactionID`, `TransactionType`, `Amount`, `FromAccountID`, `ToAccountID`, `ByAccountName`, `Timestamp`) VALUES
+(4, 'Transfer', 1000, 1234567890, 3456789012, 'Utsab Dahal', '2023-09-01 02:44:22'),
+(5, 'Deposit', 5000, 1234567890, 1234567890, 'Utsab Dahal', '2023-09-01 03:19:26'),
+(6, 'Transfer', 1000, 3456789012, 1234567890, 'Dhiraj Jirel', '2023-09-01 03:36:50'),
+(7, 'Deposit', 1234, 1234567890, 1234567890, 'Utsab Dahal', '2023-09-02 02:47:26'),
+(8, 'Transfer', 2200, 3456789012, 1234567890, 'Dhiraj Jirel', '2023-09-02 02:50:20');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user_accounts`
 --
 
@@ -40,45 +67,23 @@ CREATE TABLE `user_accounts` (
 --
 
 INSERT INTO `user_accounts` (`card_number`, `name`, `pin`, `balance`, `status`) VALUES
-(1234567890, 'Utsab Dahal', 1234, 281255, 1),
-(2345678901, 'Apson Jirel', 2345, 100, 0),
-(3456789012, 'Dhiraj Jirel', 3456, 41956, 1),
+(1234567890, 'Utsab Dahal', 1234, 278221, 1),
+(2345678901, 'Apson Jirel', 2345, 283255, 0),
+(3456789012, 'Dhiraj Jirel', 3456, 273821, 1),
 (4567890123, 'Chitra Prasad Acharya', 4567, 248148, 0),
 (5678901234, 'Pasang Gelbu Sherpa', 5678, 220499, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user_history`
---
-
-CREATE TABLE `user_history` (
-  `id` int(5) NOT NULL,
-  `card_number` bigint(20) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `history` varchar(200) NOT NULL,
-  `date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `user_history`
---
-
-INSERT INTO `user_history` (`id`, `card_number`, `name`, `history`, `date`) VALUES
-(6, 1234567890, 'Utsab Dahal', 'Rs.200.0 Withdrawn', '2023-08-02 09:59:32'),
-(7, 1234567890, 'Utsab Dahal', 'Rs.500.0 Withdrawn', '2023-08-02 10:01:51'),
-(8, 1234567890, 'Utsab Dahal', 'Rs.15000.0 Withdrawn', '2023-08-02 10:03:40'),
-(9, 1234567890, 'Utsab Dahal', 'Rs.15500.0 Withdrawn', '2023-08-02 10:03:55'),
-(10, 1234567890, 'Utsab Dahal', 'Rs.25000.0 Withdrawn', '2023-08-02 10:04:26'),
-(11, 1234567890, 'Utsab Dahal', 'Rs.50000 Deposited', '2023-08-02 10:05:25'),
-(12, 1234567890, 'Utsab Dahal', 'Rs.100 Deposited', '2023-08-02 10:06:19'),
-(13, 2345678901, 'Apson Jirel', 'Rs.23453 Deposited', '2023-08-02 19:04:51'),
-(14, 2345678901, 'Apson Jirel', 'Rs.500.0 Withdrawn', '2023-08-02 19:05:06'),
-(15, 2345678901, 'Apson Jirel', 'Rs.600 Deposited', '2023-08-02 19:05:39');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `transactionhistory`
+--
+ALTER TABLE `transactionhistory`
+  ADD PRIMARY KEY (`TransactionID`),
+  ADD KEY `FromAccountID` (`FromAccountID`),
+  ADD KEY `ToAccountID` (`ToAccountID`);
 
 --
 -- Indexes for table `user_accounts`
@@ -87,20 +92,25 @@ ALTER TABLE `user_accounts`
   ADD PRIMARY KEY (`card_number`);
 
 --
--- Indexes for table `user_history`
---
-ALTER TABLE `user_history`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `user_history`
+-- AUTO_INCREMENT for table `transactionhistory`
 --
-ALTER TABLE `user_history`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+ALTER TABLE `transactionhistory`
+  MODIFY `TransactionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `transactionhistory`
+--
+ALTER TABLE `transactionhistory`
+  ADD CONSTRAINT `transactionhistory_ibfk_1` FOREIGN KEY (`FromAccountID`) REFERENCES `user_accounts` (`card_number`),
+  ADD CONSTRAINT `transactionhistory_ibfk_2` FOREIGN KEY (`ToAccountID`) REFERENCES `user_accounts` (`card_number`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

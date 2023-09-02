@@ -6,8 +6,10 @@ package javaatm;
 
 import java.awt.CardLayout;
 import java.awt.Toolkit;
+import java.util.List;
 import javax.swing.ButtonModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -59,7 +61,7 @@ public class UserInterface extends javax.swing.JFrame {
         jDeposit = new javax.swing.JButton();
         jTransfer = new javax.swing.JButton();
         jPinChange = new javax.swing.JButton();
-        jOther = new javax.swing.JButton();
+        existButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jMiniStatement = new javax.swing.JButton();
         jBalanceEnquiry = new javax.swing.JButton();
@@ -74,12 +76,14 @@ public class UserInterface extends javax.swing.JFrame {
         transferAmountTextField = new javax.swing.JTextField();
         selectedMenuTitle1 = new javax.swing.JLabel();
         transferFirstSubmitButton = new javax.swing.JButton();
+        backToMainBtn = new javax.swing.JButton();
         transferPINPanel = new javax.swing.JPanel();
         selectedMenuTitle2 = new javax.swing.JLabel();
         AccLebel1 = new javax.swing.JLabel();
         PINPasswordField = new javax.swing.JTextField();
         selectedMenuTitle3 = new javax.swing.JLabel();
         transferSecondSubmitButton = new javax.swing.JButton();
+        backToReceiverBtn = new javax.swing.JButton();
         pinChangePanel = new javax.swing.JPanel();
         selectedMenuTitle4 = new javax.swing.JLabel();
         currentPINLabel = new javax.swing.JLabel();
@@ -90,19 +94,7 @@ public class UserInterface extends javax.swing.JFrame {
         newPINField = new javax.swing.JPasswordField();
         confirmPINLabel = new javax.swing.JLabel();
         confirmPINField = new javax.swing.JPasswordField();
-        fastCashPanel = new javax.swing.JPanel();
-        selectedMenuTitle6 = new javax.swing.JLabel();
-        selectedMenuTitle7 = new javax.swing.JLabel();
-        submitBtnFastCash = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
-        jRadioButton7 = new javax.swing.JRadioButton();
-        jRadioButton8 = new javax.swing.JRadioButton();
-        jRadioButton9 = new javax.swing.JRadioButton();
+        cancelBtnPINChange = new javax.swing.JButton();
         cashWithdrawPanel = new javax.swing.JPanel();
         selectedMenuTitle8 = new javax.swing.JLabel();
         withdrawAmountLabel = new javax.swing.JLabel();
@@ -110,6 +102,7 @@ public class UserInterface extends javax.swing.JFrame {
         selectedMenuTitle9 = new javax.swing.JLabel();
         sBtnRecNum1 = new javax.swing.JButton();
         wrongWithDrawChoice = new javax.swing.JLabel();
+        cancelWithdrawBtn = new javax.swing.JButton();
         balanceInquiryPanel = new javax.swing.JPanel();
         selectedMenuTitle10 = new javax.swing.JLabel();
         userNameDisplayTab = new javax.swing.JLabel();
@@ -130,6 +123,21 @@ public class UserInterface extends javax.swing.JFrame {
         selectedMenuTitle15 = new javax.swing.JLabel();
         submitBtnDeposit = new javax.swing.JButton();
         wrongDepositChoice = new javax.swing.JLabel();
+        cancelBtnDeposit = new javax.swing.JButton();
+        fastCashPanel = new javax.swing.JPanel();
+        selectedMenuTitle6 = new javax.swing.JLabel();
+        selectedMenuTitle7 = new javax.swing.JLabel();
+        submitBtnFastCash = new javax.swing.JButton();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        jRadioButton4 = new javax.swing.JRadioButton();
+        jRadioButton5 = new javax.swing.JRadioButton();
+        jRadioButton6 = new javax.swing.JRadioButton();
+        jRadioButton7 = new javax.swing.JRadioButton();
+        jRadioButton8 = new javax.swing.JRadioButton();
+        jRadioButton9 = new javax.swing.JRadioButton();
+        cancelBtnFastCash = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -201,16 +209,16 @@ public class UserInterface extends javax.swing.JFrame {
             }
         });
 
-        jOther.setBackground(new java.awt.Color(0, 0, 204));
-        jOther.setFont(new java.awt.Font("SimSun-ExtB", 1, 14)); // NOI18N
-        jOther.setForeground(new java.awt.Color(255, 255, 0));
-        jOther.setText("OTHER");
-        jOther.setToolTipText("");
-        jOther.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jOther.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jOther.addActionListener(new java.awt.event.ActionListener() {
+        existButton.setBackground(new java.awt.Color(0, 0, 204));
+        existButton.setFont(new java.awt.Font("SimSun-ExtB", 1, 14)); // NOI18N
+        existButton.setForeground(new java.awt.Color(255, 255, 0));
+        existButton.setText("EXIT");
+        existButton.setToolTipText("");
+        existButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        existButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        existButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jOtherActionPerformed(evt);
+                existButtonActionPerformed(evt);
             }
         });
 
@@ -278,7 +286,7 @@ public class UserInterface extends javax.swing.JFrame {
             .addGroup(menuPanelLayout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jOther, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(existButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPinChange, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
                     .addComponent(jTransfer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jDeposit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -312,11 +320,11 @@ public class UserInterface extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jMiniStatement, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jOther, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(existButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(menuPanelLayout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
 
         jDeposit.getAccessibleContext().setAccessibleName("depositPanelCode");
@@ -363,6 +371,16 @@ public class UserInterface extends javax.swing.JFrame {
             }
         });
 
+        backToMainBtn.setBackground(new java.awt.Color(0, 0, 255));
+        backToMainBtn.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
+        backToMainBtn.setForeground(new java.awt.Color(255, 255, 0));
+        backToMainBtn.setText("Back");
+        backToMainBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backToMainBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout receiverNumberPanelLayout = new javax.swing.GroupLayout(receiverNumberPanel);
         receiverNumberPanel.setLayout(receiverNumberPanelLayout);
         receiverNumberPanelLayout.setHorizontalGroup(
@@ -383,8 +401,10 @@ public class UserInterface extends javax.swing.JFrame {
             .addComponent(selectedMenuTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, receiverNumberPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(backToMainBtn)
+                .addGap(62, 62, 62)
                 .addComponent(transferFirstSubmitButton)
-                .addGap(296, 296, 296))
+                .addGap(252, 252, 252))
         );
         receiverNumberPanelLayout.setVerticalGroup(
             receiverNumberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -402,11 +422,13 @@ public class UserInterface extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addComponent(selectedMenuTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
-                .addComponent(transferFirstSubmitButton)
-                .addGap(33, 33, 33))
+                .addGroup(receiverNumberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(transferFirstSubmitButton)
+                    .addComponent(backToMainBtn))
+                .addGap(83, 83, 83))
         );
 
-        transferPanel.add(receiverNumberPanel, "receiverNumberPanelcode");
+        transferPanel.add(receiverNumberPanel, "receiverPanelCode");
 
         selectedMenuTitle2.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         selectedMenuTitle2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -438,6 +460,16 @@ public class UserInterface extends javax.swing.JFrame {
             }
         });
 
+        backToReceiverBtn.setBackground(new java.awt.Color(0, 0, 255));
+        backToReceiverBtn.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
+        backToReceiverBtn.setForeground(new java.awt.Color(255, 255, 0));
+        backToReceiverBtn.setText("Back");
+        backToReceiverBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backToReceiverBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout transferPINPanelLayout = new javax.swing.GroupLayout(transferPINPanel);
         transferPINPanel.setLayout(transferPINPanelLayout);
         transferPINPanelLayout.setHorizontalGroup(
@@ -454,8 +486,10 @@ public class UserInterface extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, transferPINPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(backToReceiverBtn)
+                .addGap(88, 88, 88)
                 .addComponent(transferSecondSubmitButton)
-                .addGap(300, 300, 300))
+                .addGap(228, 228, 228))
             .addGroup(transferPINPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(transferPINPanelLayout.createSequentialGroup()
                     .addContainerGap()
@@ -471,14 +505,16 @@ public class UserInterface extends javax.swing.JFrame {
                     .addComponent(PINPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
                 .addGap(53, 53, 53)
                 .addComponent(selectedMenuTitle3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(transferSecondSubmitButton)
-                .addGap(64, 64, 64))
+                .addGap(37, 37, 37)
+                .addGroup(transferPINPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(transferSecondSubmitButton)
+                    .addComponent(backToReceiverBtn))
+                .addGap(84, 84, 84))
             .addGroup(transferPINPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(transferPINPanelLayout.createSequentialGroup()
                     .addGap(113, 113, 113)
                     .addComponent(selectedMenuTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(169, Short.MAX_VALUE)))
+                    .addContainerGap(209, Short.MAX_VALUE)))
         );
 
         transferPanel.add(transferPINPanel, "transferPINPanelCode");
@@ -518,6 +554,16 @@ public class UserInterface extends javax.swing.JFrame {
         confirmPINLabel.setFont(new java.awt.Font("Poor Richard", 0, 18)); // NOI18N
         confirmPINLabel.setText("Confirm PIN");
 
+        cancelBtnPINChange.setBackground(new java.awt.Color(0, 0, 255));
+        cancelBtnPINChange.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
+        cancelBtnPINChange.setForeground(new java.awt.Color(255, 255, 0));
+        cancelBtnPINChange.setText("Cancel");
+        cancelBtnPINChange.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnPINChangeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pinChangePanelLayout = new javax.swing.GroupLayout(pinChangePanel);
         pinChangePanel.setLayout(pinChangePanelLayout);
         pinChangePanelLayout.setHorizontalGroup(
@@ -526,10 +572,6 @@ public class UserInterface extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(selectedMenuTitle4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(selectedMenuTitle5, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pinChangePanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(submitBtnPINChange)
-                .addGap(296, 296, 296))
             .addGroup(pinChangePanelLayout.createSequentialGroup()
                 .addGap(77, 77, 77)
                 .addGroup(pinChangePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -546,6 +588,12 @@ public class UserInterface extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(confirmPINField, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(59, 59, 59))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pinChangePanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cancelBtnPINChange)
+                .addGap(104, 104, 104)
+                .addComponent(submitBtnPINChange)
+                .addGap(236, 236, 236))
         );
         pinChangePanelLayout.setVerticalGroup(
             pinChangePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -564,14 +612,367 @@ public class UserInterface extends javax.swing.JFrame {
                 .addGroup(pinChangePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirmPINField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(confirmPINLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(selectedMenuTitle5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
-                .addComponent(submitBtnPINChange)
-                .addGap(33, 33, 33))
+                .addGroup(pinChangePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(submitBtnPINChange)
+                    .addComponent(cancelBtnPINChange))
+                .addGap(89, 89, 89))
         );
 
         ChangeablePanel.add(pinChangePanel, "PINChangePanelCode");
+
+        selectedMenuTitle8.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
+        selectedMenuTitle8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        selectedMenuTitle8.setText("Withdrawl Menu Selected");
+
+        withdrawAmountLabel.setFont(new java.awt.Font("Poor Richard", 0, 18)); // NOI18N
+        withdrawAmountLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        withdrawAmountLabel.setText("Amount to Withdraw:");
+
+        withdrawAmount.setFont(new java.awt.Font("Lucida Console", 0, 14)); // NOI18N
+        withdrawAmount.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        withdrawAmount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                withdrawAmountActionPerformed(evt);
+            }
+        });
+
+        selectedMenuTitle9.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
+        selectedMenuTitle9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        selectedMenuTitle9.setText("Double Check the Withdrawl amount before clicking Proceeding");
+
+        sBtnRecNum1.setBackground(new java.awt.Color(0, 0, 255));
+        sBtnRecNum1.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
+        sBtnRecNum1.setForeground(new java.awt.Color(255, 255, 0));
+        sBtnRecNum1.setText("Submit");
+        sBtnRecNum1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sBtnRecNum1ActionPerformed(evt);
+            }
+        });
+
+        wrongWithDrawChoice.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
+        wrongWithDrawChoice.setForeground(new java.awt.Color(255, 0, 0));
+        wrongWithDrawChoice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        cancelWithdrawBtn.setBackground(new java.awt.Color(0, 0, 255));
+        cancelWithdrawBtn.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
+        cancelWithdrawBtn.setForeground(new java.awt.Color(255, 255, 0));
+        cancelWithdrawBtn.setText("Cancel");
+        cancelWithdrawBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelWithdrawBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout cashWithdrawPanelLayout = new javax.swing.GroupLayout(cashWithdrawPanel);
+        cashWithdrawPanel.setLayout(cashWithdrawPanelLayout);
+        cashWithdrawPanelLayout.setHorizontalGroup(
+            cashWithdrawPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cashWithdrawPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(cashWithdrawPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(selectedMenuTitle8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(cashWithdrawPanelLayout.createSequentialGroup()
+                        .addComponent(withdrawAmountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(withdrawAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66))))
+            .addGroup(cashWithdrawPanelLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(selectedMenuTitle9, javax.swing.GroupLayout.DEFAULT_SIZE, 659, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(cashWithdrawPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(wrongWithDrawChoice, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cashWithdrawPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cancelWithdrawBtn)
+                .addGap(109, 109, 109)
+                .addComponent(sBtnRecNum1)
+                .addGap(234, 234, 234))
+        );
+        cashWithdrawPanelLayout.setVerticalGroup(
+            cashWithdrawPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cashWithdrawPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(selectedMenuTitle8, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addGroup(cashWithdrawPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(withdrawAmountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(withdrawAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addComponent(wrongWithDrawChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(selectedMenuTitle9, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addGroup(cashWithdrawPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sBtnRecNum1)
+                    .addComponent(cancelWithdrawBtn))
+                .addContainerGap(73, Short.MAX_VALUE))
+        );
+
+        ChangeablePanel.add(cashWithdrawPanel, "cashWithdrawlPanelCode");
+
+        selectedMenuTitle10.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
+        selectedMenuTitle10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        selectedMenuTitle10.setText("Balance inquiry Menu Selected");
+
+        userNameDisplayTab.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
+        userNameDisplayTab.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        backToMainMenuFromBalanceInquiry.setBackground(new java.awt.Color(0, 0, 255));
+        backToMainMenuFromBalanceInquiry.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
+        backToMainMenuFromBalanceInquiry.setForeground(new java.awt.Color(255, 255, 0));
+        backToMainMenuFromBalanceInquiry.setText("Confirm");
+        backToMainMenuFromBalanceInquiry.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backToMainMenuFromBalanceInquiryActionPerformed(evt);
+            }
+        });
+
+        balanceDisplayTab.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
+        balanceDisplayTab.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout balanceInquiryPanelLayout = new javax.swing.GroupLayout(balanceInquiryPanel);
+        balanceInquiryPanel.setLayout(balanceInquiryPanelLayout);
+        balanceInquiryPanelLayout.setHorizontalGroup(
+            balanceInquiryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, balanceInquiryPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(backToMainMenuFromBalanceInquiry)
+                .addGap(296, 296, 296))
+            .addGroup(balanceInquiryPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(balanceInquiryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(selectedMenuTitle10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(balanceInquiryPanelLayout.createSequentialGroup()
+                        .addGroup(balanceInquiryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(balanceDisplayTab, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
+                            .addComponent(userNameDisplayTab, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE))
+                        .addContainerGap())))
+        );
+        balanceInquiryPanelLayout.setVerticalGroup(
+            balanceInquiryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(balanceInquiryPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(selectedMenuTitle10, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62)
+                .addComponent(userNameDisplayTab, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(balanceDisplayTab, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addComponent(backToMainMenuFromBalanceInquiry)
+                .addGap(33, 33, 33))
+        );
+
+        ChangeablePanel.add(balanceInquiryPanel, "balanceInquiryPanelCode");
+
+        selectedMenuTitle12.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
+        selectedMenuTitle12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        selectedMenuTitle12.setText("Mini Statement Menu Selected");
+
+        sBtnRecNum3.setBackground(new java.awt.Color(0, 0, 255));
+        sBtnRecNum3.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
+        sBtnRecNum3.setForeground(new java.awt.Color(255, 255, 0));
+        sBtnRecNum3.setText("Back to Main Menu");
+        sBtnRecNum3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sBtnRecNum3ActionPerformed(evt);
+            }
+        });
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "S.N", "Transaction Type", "Amount", "From", "To", "By", "DateTime"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Long.class, java.lang.Long.class, java.lang.String.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(1).setMinWidth(90);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(90);
+            jTable1.getColumnModel().getColumn(6).setMinWidth(120);
+            jTable1.getColumnModel().getColumn(6).setPreferredWidth(120);
+        }
+
+        javax.swing.GroupLayout miniStatementPanelLayout = new javax.swing.GroupLayout(miniStatementPanel);
+        miniStatementPanel.setLayout(miniStatementPanelLayout);
+        miniStatementPanelLayout.setHorizontalGroup(
+            miniStatementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(miniStatementPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(selectedMenuTitle12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(miniStatementPanelLayout.createSequentialGroup()
+                .addGroup(miniStatementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(miniStatementPanelLayout.createSequentialGroup()
+                        .addGap(233, 233, 233)
+                        .addComponent(sBtnRecNum3))
+                    .addGroup(miniStatementPanelLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+        miniStatementPanelLayout.setVerticalGroup(
+            miniStatementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(miniStatementPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(selectedMenuTitle12, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(sBtnRecNum3)
+                .addGap(35, 35, 35))
+        );
+
+        ChangeablePanel.add(miniStatementPanel, "miniStatementPanelCode");
+
+        selectedMenuTitle13.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
+        selectedMenuTitle13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        selectedMenuTitle13.setText("Other Menu Selected");
+
+        backToMainMenuFromOther.setBackground(new java.awt.Color(0, 0, 255));
+        backToMainMenuFromOther.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
+        backToMainMenuFromOther.setForeground(new java.awt.Color(255, 255, 0));
+        backToMainMenuFromOther.setText("Main Menu");
+
+        javax.swing.GroupLayout otherPanelLayout = new javax.swing.GroupLayout(otherPanel);
+        otherPanel.setLayout(otherPanelLayout);
+        otherPanelLayout.setHorizontalGroup(
+            otherPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, otherPanelLayout.createSequentialGroup()
+                .addContainerGap(275, Short.MAX_VALUE)
+                .addComponent(backToMainMenuFromOther)
+                .addGap(296, 296, 296))
+            .addGroup(otherPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(selectedMenuTitle13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        otherPanelLayout.setVerticalGroup(
+            otherPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(otherPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(selectedMenuTitle13, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(164, 164, 164)
+                .addComponent(backToMainMenuFromOther)
+                .addGap(33, 33, 33))
+        );
+
+        ChangeablePanel.add(otherPanel, "otherPanelCode");
+
+        selectedMenuTitle14.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
+        selectedMenuTitle14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        selectedMenuTitle14.setText("Deposit  Menu Selected");
+
+        amountToDepositLabel.setFont(new java.awt.Font("Poor Richard", 0, 18)); // NOI18N
+        amountToDepositLabel.setText("Amount to Deposit:");
+
+        amountToDeposit.setFont(new java.awt.Font("Lucida Console", 0, 14)); // NOI18N
+        amountToDeposit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                amountToDepositActionPerformed(evt);
+            }
+        });
+
+        selectedMenuTitle15.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
+        selectedMenuTitle15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        selectedMenuTitle15.setText("Double Check the receivers account number before clicking submit");
+
+        submitBtnDeposit.setBackground(new java.awt.Color(0, 0, 255));
+        submitBtnDeposit.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
+        submitBtnDeposit.setForeground(new java.awt.Color(255, 255, 0));
+        submitBtnDeposit.setText("Submit");
+        submitBtnDeposit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitBtnDepositActionPerformed(evt);
+            }
+        });
+
+        wrongDepositChoice.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
+        wrongDepositChoice.setForeground(new java.awt.Color(255, 0, 0));
+        wrongDepositChoice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        cancelBtnDeposit.setBackground(new java.awt.Color(0, 0, 255));
+        cancelBtnDeposit.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
+        cancelBtnDeposit.setForeground(new java.awt.Color(255, 255, 0));
+        cancelBtnDeposit.setText("Cancel");
+        cancelBtnDeposit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnDepositActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout depositPanelLayout = new javax.swing.GroupLayout(depositPanel);
+        depositPanel.setLayout(depositPanelLayout);
+        depositPanelLayout.setHorizontalGroup(
+            depositPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, depositPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cancelBtnDeposit)
+                .addGap(57, 57, 57)
+                .addComponent(submitBtnDeposit)
+                .addGap(257, 257, 257))
+            .addComponent(selectedMenuTitle15, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+            .addGroup(depositPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(selectedMenuTitle14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, depositPanelLayout.createSequentialGroup()
+                .addGap(94, 94, 94)
+                .addComponent(amountToDepositLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(amountToDeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71))
+            .addGroup(depositPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(wrongDepositChoice, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        depositPanelLayout.setVerticalGroup(
+            depositPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(depositPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(selectedMenuTitle14, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(selectedMenuTitle15, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addGroup(depositPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(amountToDeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(amountToDepositLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                .addComponent(wrongDepositChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(depositPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(submitBtnDeposit)
+                    .addComponent(cancelBtnDeposit))
+                .addGap(33, 33, 33))
+        );
+
+        ChangeablePanel.add(depositPanel, "depositPanelCode");
+        depositPanel.getAccessibleContext().setAccessibleName("depositPanelCode");
 
         selectedMenuTitle6.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         selectedMenuTitle6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -652,6 +1053,16 @@ public class UserInterface extends javax.swing.JFrame {
         jRadioButton9.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
         jRadioButton9.setText("15000");
 
+        cancelBtnFastCash.setBackground(new java.awt.Color(0, 0, 255));
+        cancelBtnFastCash.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
+        cancelBtnFastCash.setForeground(new java.awt.Color(255, 255, 0));
+        cancelBtnFastCash.setText("Cancel");
+        cancelBtnFastCash.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnFastCashActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout fastCashPanelLayout = new javax.swing.GroupLayout(fastCashPanel);
         fastCashPanel.setLayout(fastCashPanelLayout);
         fastCashPanelLayout.setHorizontalGroup(
@@ -664,33 +1075,32 @@ public class UserInterface extends javax.swing.JFrame {
                         .addComponent(selectedMenuTitle7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fastCashPanelLayout.createSequentialGroup()
-                .addGap(77, 77, 77)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(fastCashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRadioButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRadioButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(fastCashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(117, 117, 117)
+                .addGroup(fastCashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(fastCashPanelLayout.createSequentialGroup()
+                        .addComponent(jRadioButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
+                        .addComponent(jRadioButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(fastCashPanelLayout.createSequentialGroup()
+                        .addComponent(jRadioButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
+                        .addComponent(jRadioButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(fastCashPanelLayout.createSequentialGroup()
+                        .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(submitBtnFastCash)
-                        .addGap(240, 240, 240))
-                    .addGroup(fastCashPanelLayout.createSequentialGroup()
-                        .addGap(117, 117, 117)
-                        .addGroup(fastCashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(fastCashPanelLayout.createSequentialGroup()
-                                .addComponent(jRadioButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
-                                .addComponent(jRadioButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(fastCashPanelLayout.createSequentialGroup()
-                                .addComponent(jRadioButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
-                                .addComponent(jRadioButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(fastCashPanelLayout.createSequentialGroup()
-                                .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(13, 13, 13)))
-                .addGap(56, 56, 56))
+                        .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(78, 78, 78))
+            .addGroup(fastCashPanelLayout.createSequentialGroup()
+                .addGap(214, 214, 214)
+                .addComponent(cancelBtnFastCash)
+                .addGap(85, 85, 85)
+                .addComponent(submitBtnFastCash)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         fastCashPanelLayout.setVerticalGroup(
             fastCashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -714,321 +1124,14 @@ public class UserInterface extends javax.swing.JFrame {
                     .addComponent(jRadioButton7)
                     .addComponent(jRadioButton9)
                     .addComponent(jRadioButton8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                .addComponent(submitBtnFastCash)
-                .addGap(33, 33, 33))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addGroup(fastCashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(submitBtnFastCash)
+                    .addComponent(cancelBtnFastCash))
+                .addGap(43, 43, 43))
         );
 
         ChangeablePanel.add(fastCashPanel, "fastCashPanelCode");
-
-        selectedMenuTitle8.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
-        selectedMenuTitle8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        selectedMenuTitle8.setText("Withdrawl Menu Selected");
-
-        withdrawAmountLabel.setFont(new java.awt.Font("Poor Richard", 0, 18)); // NOI18N
-        withdrawAmountLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        withdrawAmountLabel.setText("Amount to Withdraw:");
-
-        withdrawAmount.setFont(new java.awt.Font("Lucida Console", 0, 14)); // NOI18N
-        withdrawAmount.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        withdrawAmount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                withdrawAmountActionPerformed(evt);
-            }
-        });
-
-        selectedMenuTitle9.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
-        selectedMenuTitle9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        selectedMenuTitle9.setText("Double Check the Withdrawl amount before clicking Proceeding");
-
-        sBtnRecNum1.setBackground(new java.awt.Color(0, 0, 255));
-        sBtnRecNum1.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
-        sBtnRecNum1.setForeground(new java.awt.Color(255, 255, 0));
-        sBtnRecNum1.setText("Submit");
-        sBtnRecNum1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sBtnRecNum1ActionPerformed(evt);
-            }
-        });
-
-        wrongWithDrawChoice.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
-        wrongWithDrawChoice.setForeground(new java.awt.Color(255, 0, 0));
-        wrongWithDrawChoice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        javax.swing.GroupLayout cashWithdrawPanelLayout = new javax.swing.GroupLayout(cashWithdrawPanel);
-        cashWithdrawPanel.setLayout(cashWithdrawPanelLayout);
-        cashWithdrawPanelLayout.setHorizontalGroup(
-            cashWithdrawPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cashWithdrawPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(sBtnRecNum1)
-                .addGap(296, 296, 296))
-            .addGroup(cashWithdrawPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(cashWithdrawPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(selectedMenuTitle8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(cashWithdrawPanelLayout.createSequentialGroup()
-                        .addComponent(withdrawAmountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(withdrawAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(66, 66, 66))))
-            .addGroup(cashWithdrawPanelLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(selectedMenuTitle9, javax.swing.GroupLayout.DEFAULT_SIZE, 659, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(cashWithdrawPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(wrongWithDrawChoice, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        cashWithdrawPanelLayout.setVerticalGroup(
-            cashWithdrawPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cashWithdrawPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(selectedMenuTitle8, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addGroup(cashWithdrawPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(withdrawAmountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(withdrawAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addComponent(wrongWithDrawChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(selectedMenuTitle9, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(sBtnRecNum1)
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
-
-        ChangeablePanel.add(cashWithdrawPanel, "cashWithdrawlPanelCode");
-
-        selectedMenuTitle10.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
-        selectedMenuTitle10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        selectedMenuTitle10.setText("Balance inquiry Menu Selected");
-
-        userNameDisplayTab.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
-        userNameDisplayTab.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        backToMainMenuFromBalanceInquiry.setBackground(new java.awt.Color(0, 0, 255));
-        backToMainMenuFromBalanceInquiry.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
-        backToMainMenuFromBalanceInquiry.setForeground(new java.awt.Color(255, 255, 0));
-        backToMainMenuFromBalanceInquiry.setText("Confirm");
-        backToMainMenuFromBalanceInquiry.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backToMainMenuFromBalanceInquiryActionPerformed(evt);
-            }
-        });
-
-        balanceDisplayTab.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
-        balanceDisplayTab.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        javax.swing.GroupLayout balanceInquiryPanelLayout = new javax.swing.GroupLayout(balanceInquiryPanel);
-        balanceInquiryPanel.setLayout(balanceInquiryPanelLayout);
-        balanceInquiryPanelLayout.setHorizontalGroup(
-            balanceInquiryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, balanceInquiryPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(backToMainMenuFromBalanceInquiry)
-                .addGap(296, 296, 296))
-            .addGroup(balanceInquiryPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(balanceInquiryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(selectedMenuTitle10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(balanceInquiryPanelLayout.createSequentialGroup()
-                        .addGroup(balanceInquiryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(balanceDisplayTab, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
-                            .addComponent(userNameDisplayTab, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE))
-                        .addContainerGap())))
-        );
-        balanceInquiryPanelLayout.setVerticalGroup(
-            balanceInquiryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(balanceInquiryPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(selectedMenuTitle10, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
-                .addComponent(userNameDisplayTab, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(balanceDisplayTab, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
-                .addComponent(backToMainMenuFromBalanceInquiry)
-                .addGap(33, 33, 33))
-        );
-
-        ChangeablePanel.add(balanceInquiryPanel, "balanceInquiryPanelCode");
-
-        selectedMenuTitle12.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
-        selectedMenuTitle12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        selectedMenuTitle12.setText("Mini Statement Menu Selected");
-
-        sBtnRecNum3.setBackground(new java.awt.Color(0, 0, 255));
-        sBtnRecNum3.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
-        sBtnRecNum3.setForeground(new java.awt.Color(255, 255, 0));
-        sBtnRecNum3.setText("Submit");
-        sBtnRecNum3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sBtnRecNum3ActionPerformed(evt);
-            }
-        });
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "S.N", "Transaction", "Date", "", "Title 5"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
-
-        javax.swing.GroupLayout miniStatementPanelLayout = new javax.swing.GroupLayout(miniStatementPanel);
-        miniStatementPanel.setLayout(miniStatementPanelLayout);
-        miniStatementPanelLayout.setHorizontalGroup(
-            miniStatementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(miniStatementPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(selectedMenuTitle12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(miniStatementPanelLayout.createSequentialGroup()
-                .addGroup(miniStatementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(miniStatementPanelLayout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(miniStatementPanelLayout.createSequentialGroup()
-                        .addGap(269, 269, 269)
-                        .addComponent(sBtnRecNum3)))
-                .addContainerGap(157, Short.MAX_VALUE))
-        );
-        miniStatementPanelLayout.setVerticalGroup(
-            miniStatementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(miniStatementPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(selectedMenuTitle12, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(sBtnRecNum3)
-                .addContainerGap(68, Short.MAX_VALUE))
-        );
-
-        ChangeablePanel.add(miniStatementPanel, "miniStatementPanelCode");
-
-        selectedMenuTitle13.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
-        selectedMenuTitle13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        selectedMenuTitle13.setText("Other Menu Selected");
-
-        backToMainMenuFromOther.setBackground(new java.awt.Color(0, 0, 255));
-        backToMainMenuFromOther.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
-        backToMainMenuFromOther.setForeground(new java.awt.Color(255, 255, 0));
-        backToMainMenuFromOther.setText("Main Menu");
-
-        javax.swing.GroupLayout otherPanelLayout = new javax.swing.GroupLayout(otherPanel);
-        otherPanel.setLayout(otherPanelLayout);
-        otherPanelLayout.setHorizontalGroup(
-            otherPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, otherPanelLayout.createSequentialGroup()
-                .addContainerGap(275, Short.MAX_VALUE)
-                .addComponent(backToMainMenuFromOther)
-                .addGap(296, 296, 296))
-            .addGroup(otherPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(selectedMenuTitle13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        otherPanelLayout.setVerticalGroup(
-            otherPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(otherPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(selectedMenuTitle13, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(164, 164, 164)
-                .addComponent(backToMainMenuFromOther)
-                .addGap(33, 33, 33))
-        );
-
-        ChangeablePanel.add(otherPanel, "otherPanelCode");
-
-        selectedMenuTitle14.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
-        selectedMenuTitle14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        selectedMenuTitle14.setText("Deposit  Menu Selected");
-
-        amountToDepositLabel.setFont(new java.awt.Font("Poor Richard", 0, 18)); // NOI18N
-        amountToDepositLabel.setText("Amount to Deposit:");
-
-        amountToDeposit.setFont(new java.awt.Font("Lucida Console", 0, 14)); // NOI18N
-        amountToDeposit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                amountToDepositActionPerformed(evt);
-            }
-        });
-
-        selectedMenuTitle15.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
-        selectedMenuTitle15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        selectedMenuTitle15.setText("Double Check the receivers account number before clicking submit");
-
-        submitBtnDeposit.setBackground(new java.awt.Color(0, 0, 255));
-        submitBtnDeposit.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
-        submitBtnDeposit.setForeground(new java.awt.Color(255, 255, 0));
-        submitBtnDeposit.setText("Submit");
-        submitBtnDeposit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitBtnDepositActionPerformed(evt);
-            }
-        });
-
-        wrongDepositChoice.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
-        wrongDepositChoice.setForeground(new java.awt.Color(255, 0, 0));
-        wrongDepositChoice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        javax.swing.GroupLayout depositPanelLayout = new javax.swing.GroupLayout(depositPanel);
-        depositPanel.setLayout(depositPanelLayout);
-        depositPanelLayout.setHorizontalGroup(
-            depositPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, depositPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(submitBtnDeposit)
-                .addGap(296, 296, 296))
-            .addComponent(selectedMenuTitle15, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
-            .addGroup(depositPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(selectedMenuTitle14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, depositPanelLayout.createSequentialGroup()
-                .addGap(94, 94, 94)
-                .addComponent(amountToDepositLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(amountToDeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71))
-            .addGroup(depositPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(wrongDepositChoice, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        depositPanelLayout.setVerticalGroup(
-            depositPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(depositPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(selectedMenuTitle14, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(selectedMenuTitle15, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addGroup(depositPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(amountToDeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(amountToDepositLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                .addComponent(wrongDepositChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(submitBtnDeposit)
-                .addGap(33, 33, 33))
-        );
-
-        ChangeablePanel.add(depositPanel, "depositPanelCode");
-        depositPanel.getAccessibleContext().setAccessibleName("depositPanelCode");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1076,15 +1179,50 @@ public class UserInterface extends javax.swing.JFrame {
         switchToPanel("PINChangePanelCode");
     }//GEN-LAST:event_jPinChangeActionPerformed
 
-    private void jOtherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOtherActionPerformed
+    private void existButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_existButtonActionPerformed
         // TODO add your handling code here:
-        switchToPanel("otherPanelCode");
-    }//GEN-LAST:event_jOtherActionPerformed
+         int result = JOptionPane.showConfirmDialog(
+            null,
+            "Do you really want to exit?",
+            "Exit Confirmation",
+            JOptionPane.YES_NO_OPTION
+        );
+
+        if (result == JOptionPane.YES_OPTION) {
+            System.exit(0); // Exit the application
+        }
+        //switchToPanel("otherPanelCode");
+    }//GEN-LAST:event_existButtonActionPerformed
 
     private void jMiniStatementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMiniStatementActionPerformed
-        // TODO add your handling code here:
+        displayTransactionHistory();
         switchToPanel("miniStatementPanelCode");
     }//GEN-LAST:event_jMiniStatementActionPerformed
+
+    
+    public void displayTransactionHistory() {
+
+    // Call the getTransactionHistory method to fetch data
+    List<Object[]> transactionList = dbLoad.getTransactionHistory();
+
+    // Clear any existing rows from the table
+    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    model.setRowCount(0);
+
+    // Populate the table with the retrieved data
+    int sn = 1; // Serial number counter
+    for (Object[] transaction : transactionList) {
+        model.addRow(new Object[]{
+            sn++, // Serial number
+            transaction[0], // TransactionType
+            transaction[1], // Amount
+            transaction[2], // FromAccountID
+            transaction[3], // ToAccountID
+            transaction[4], // ByAccountName
+            transaction[5]  // Timestamp
+        });
+    }
+}
 
     private void jBalanceEnquiryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBalanceEnquiryActionPerformed
         userNameDisplayTab.setText("Dear " + dbLoad.getDbCardHolderName() + ",");
@@ -1136,7 +1274,7 @@ public class UserInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_withdrawAmountActionPerformed
 
     private void sBtnRecNum3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sBtnRecNum3ActionPerformed
-        // TODO add your handling code here:
+        switchToPanel("menuPanelCode");
     }//GEN-LAST:event_sBtnRecNum3ActionPerformed
 
     private void amountToDepositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountToDepositActionPerformed
@@ -1154,6 +1292,10 @@ public class UserInterface extends javax.swing.JFrame {
         if (inputAmount.matches("\\d+")) {
             int depositAmount = Integer.parseInt(inputAmount);
             if(dbLoad.depositBalance(depositAmount)) {
+                
+                long FromAccountID = dbLoad.getDbCardNumber();
+                long ToAccountID = FromAccountID;
+                dbLoad.insertTransactionHistory("deposit", depositAmount, FromAccountID, ToAccountID, dbLoad.getDbCardHolderName());
                 JOptionPane.showMessageDialog(null, "Balance successfully deposited.");
             }
             
@@ -1171,6 +1313,10 @@ public class UserInterface extends javax.swing.JFrame {
         if (inputAmount.matches("\\d+")) {
             int withDrawAmount = Integer.parseInt(inputAmount);
             dbLoad.withDrawBalance(withDrawAmount);
+            
+                long FromAccountID = dbLoad.getDbCardNumber();
+                long ToAccountID = FromAccountID;
+                dbLoad.insertTransactionHistory("Withdrawal", withDrawAmount, FromAccountID, ToAccountID, dbLoad.getDbCardHolderName());
             
         }else {
             wrongWithDrawChoice.setText("Please input the amount in Digits only!");
@@ -1250,6 +1396,11 @@ public class UserInterface extends javax.swing.JFrame {
             selectedValue = 15000;
         }
             if(dbLoad.withDrawBalance(selectedValue)) {
+                
+                long FromAccountID = dbLoad.getDbCardNumber();
+                long ToAccountID = FromAccountID;
+                dbLoad.insertTransactionHistory("Withdrawal", selectedValue, FromAccountID, ToAccountID, dbLoad.getDbCardHolderName());
+            
                 JOptionPane.showMessageDialog(null, "Balance successfully Withdrawn.");
                 JOptionPane.showMessageDialog(null, "Please Collect your Balance. ");
             }
@@ -1272,6 +1423,10 @@ public class UserInterface extends javax.swing.JFrame {
 
         if (pin == dbLoad.getDbPIN()) {
             if (dbLoad.depositBalanceforTransfer(transferAmount, receiverAccountNum) && dbLoad.withDrawBalance(transferAmount)) {
+                long FromAccountID = dbLoad.getDbCardNumber();
+                long ToAccountID = receiverAccountNum;
+                dbLoad.insertTransactionHistory("transfer", transferAmount, FromAccountID, ToAccountID, dbLoad.getDbCardHolderName());
+            
                 JOptionPane.showMessageDialog(null, "Balance successfully Transferred to " + receiverAccountNum + " .");
             }
         } else {
@@ -1291,6 +1446,32 @@ public class UserInterface extends javax.swing.JFrame {
         switchToTransferPanel("transferPINPanelCode");
     }//GEN-LAST:event_transferFirstSubmitButtonActionPerformed
 
+    private void backToMainBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToMainBtnActionPerformed
+        switchToPanel("menuPanelCode");
+    }//GEN-LAST:event_backToMainBtnActionPerformed
+
+    private void backToReceiverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToReceiverBtnActionPerformed
+        switchToTransferPanel("receiverPanelCode");
+    }//GEN-LAST:event_backToReceiverBtnActionPerformed
+
+    private void cancelBtnDepositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnDepositActionPerformed
+        switchToPanel("menuPanelCode");
+    }//GEN-LAST:event_cancelBtnDepositActionPerformed
+
+    private void cancelBtnFastCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnFastCashActionPerformed
+        switchToPanel("menuPanelCode");
+    }//GEN-LAST:event_cancelBtnFastCashActionPerformed
+
+    private void cancelWithdrawBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelWithdrawBtnActionPerformed
+        // TODO add your handling code here:
+        switchToPanel("menuPanelCode");
+    }//GEN-LAST:event_cancelWithdrawBtnActionPerformed
+
+    private void cancelBtnPINChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnPINChangeActionPerformed
+        // TODO add your handling code here:
+        switchToPanel("menuPanelCode");
+    }//GEN-LAST:event_cancelBtnPINChangeActionPerformed
+
    
 //    boolean arePinsEqual(String currentPIN, String newPIN, String confirmPIN) {
 //        return currentPIN.equals(newPIN) && newPIN.equals(confirmPIN);
@@ -1306,16 +1487,23 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JTextField PINPasswordField;
     private javax.swing.JTextField amountToDeposit;
     private javax.swing.JLabel amountToDepositLabel;
+    private javax.swing.JButton backToMainBtn;
     private javax.swing.JButton backToMainMenuFromBalanceInquiry;
     private javax.swing.JButton backToMainMenuFromOther;
+    private javax.swing.JButton backToReceiverBtn;
     private javax.swing.JLabel balanceDisplayTab;
     private javax.swing.JPanel balanceInquiryPanel;
+    private javax.swing.JButton cancelBtnDeposit;
+    private javax.swing.JButton cancelBtnFastCash;
+    private javax.swing.JButton cancelBtnPINChange;
+    private javax.swing.JButton cancelWithdrawBtn;
     private javax.swing.JPanel cashWithdrawPanel;
     private javax.swing.JPasswordField confirmPINField;
     private javax.swing.JLabel confirmPINLabel;
     private javax.swing.JPasswordField currentPINField;
     private javax.swing.JLabel currentPINLabel;
     private javax.swing.JPanel depositPanel;
+    private javax.swing.JButton existButton;
     private javax.swing.ButtonGroup fastCashButtonGroup;
     private javax.swing.JPanel fastCashPanel;
     private javax.swing.JButton jBalanceEnquiry;
@@ -1326,7 +1514,6 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JButton jMiniStatement;
-    private javax.swing.JButton jOther;
     private javax.swing.JButton jPinChange;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
